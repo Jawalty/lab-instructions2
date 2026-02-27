@@ -95,20 +95,20 @@ Before diving into the exercises, let's make sure you're familiar with the RStud
 
 **Question 1:** Without looking, can you name the four panes in RStudio and briefly describe their purpose?
 
-**Your answer:**
+**Your answer:** The source pane is where we load our rmd files and edit them accordingly. The console pane is where we load our libraries or separate commands to then use in our source pane. The environment pane is where we can load some data sets, look at our work history, as well as push and commit our work changes back to our forked repositories. Finally the files pane is where all of our files and packages are stored, as well as our viewer pane which enables us to see our final product.
 
 
 **Question 2:** Verify that the dataset has loaded into the Environment pane. How many observations are in the dataset?
 
 **Hint:** Look in the Environment pane, or run `nrow(plastic_waste)` in the Console, or click on the dataset name to view it.
 
-**Your answer:** The dataset has _____ observations.
+**Your answer:** The dataset has __240___ observations.
 
 **Question 3:** Have a quick look at the data using `View(plastic_waste)` in the Console. You'll notice that some cells contain `NA`. What does `NA` mean in R?
 
 **Hint:** Run `?NA` in the Console to see the documentation.
 
-**Your answer:**
+**Your answer:** Not Available
 
 
 
