@@ -150,14 +150,14 @@ Take a look at the websites that the data come from (linked above). Are there an
 **Browse the websites and list the countries:**
 
 **La Quinta locations outside the US:**
-- 
-- 
-- 
+- Mexico
+- Canada
+- Turkey
 
 **Denny's locations outside the US:**
-- 
-- 
-- 
+- Canada 
+- Mexico 
+- Puerto Rico
 
 ---
 
@@ -166,8 +166,8 @@ Take a look at the websites that the data come from (linked above). Are there an
 Now take a look at the data (use `View(dennys)` and `View(laquinta)` in the Console). What would be some ways of determining whether or not either establishment has any locations outside the US using just the data (and not the websites)? Don't worry about whether you know how to implement this, just brainstorm some ideas.
 
 **Your ideas:**
-- 
-- 
+- If you look at the cities listed, there are quite a few that stick out to being non-US.
+- If youre well educated on coordinated you could figure out some with the data listed.
 - 
 
 ---
@@ -187,9 +187,9 @@ dennys %>%
   filter(!(state %in% states$abbreviation))
 ```
 
-**How many Denny's locations are outside the US?** _____
+**How many Denny's locations are outside the US?** It's telling me zero.
 
-**If there are any, which state/province codes appear?** _____
+**If there are any, which state/province codes appear?** NA
 
 ---
 
@@ -203,10 +203,10 @@ The `<-` assignment operator saves the result. Without it, R will display the re
 ```
 
 **Complete the code:**
-```{r add-dennys-country, eval = FALSE}
+```{r add-dennys-country, eval = TRUE}
 # Remember to change eval=FALSE to eval=TRUE!
 dennys <- dennys %>%
-  mutate(___ = "___")
+  mutate(country = "United States")
 ```
 
 **What this does:**
@@ -234,18 +234,18 @@ laquinta %>%
 
 **Record your findings:**
 
-| State Code | Country |
-|:-----------|:--------|
-| ON         |         |
-| BC         |         |
-| ANT        |         |
-| AG         |         |
-| QR         |         |
-| CH         |         |
-| NL         |         |
-| VE         |         |
-| PU         |         |
-| SL         |         |
+| State Code | Country        |
+|:-----------|:--------       |
+| ON         |Ontario         |
+| BC         |British Columbia|
+| ANT        |Antioquia       |
+| AG         |Aguascalientes  |
+| QR         |Quintana Roo    |
+| CH         |Chihuahua       |
+| NL         |Nuevo Leon      |
+| VE         |Vera Cruz       |
+| PU         |Puebla          |
+| SL         |San Luis Potosi |
 
 **Hint:** Google the state codes along with "La Quinta" to find out which countries they're in.
 
@@ -256,14 +256,14 @@ laquinta %>%
 Add a country variable to the La Quinta dataset. Use the `case_when()` function to populate this variable based on the state codes. You'll need to refer to your notes from Exercise 7 about which country the non-US locations are in.
 
 **Complete the code:**
-```{r add-laquinta-country, eval = FALSE}
+```{r add-laquinta-country, eval = TRUE}
 # Remember to change eval=FALSE to eval=TRUE!
 laquinta <- laquinta %>%
   mutate(country = case_when(
     state %in% state.abb     ~ "United States",
-    state %in% c("ON", "BC") ~ "___",
-    state == "ANT"           ~ "___",
-    state %in% c("AG", "QR", "CH", "NL", "VE", "PU", "SL") ~ "___"
+    state %in% c("ON", "BC") ~ "Canada",
+    state == "ANT"           ~ "Columbia",
+    state %in% c("AG", "QR", "CH", "NL", "VE", "PU", "SL") ~ "Mexico"
   ))
 ```
 
