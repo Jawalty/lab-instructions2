@@ -367,23 +367,23 @@ Can you help them improve it? First, brainstorm how you would improve it. Write 
 
 **Problems with the original plot:**
 
-- Problem 1: 
+- Problem 1: The data needs to be more focused on the left values, theres too much open space on the graph making the data practically unreadable.
 
-- Problem 2: 
+- Problem 2: The circle graph has far too many countries to keep track of.
 
-- Problem 3: 
+- Problem 3: Many of the countries colors are not represneted, or they're too small to see
 
-- Problem 4: 
+- Problem 4: There axis don't detail you on what is being shown.
 
 **Proposed improvements:** For each problem above, suggest a solution:
 
-- Improvement 1: 
+- Improvement 1: Eliminate the circle graph.
 
-- Improvement 2: 
+- Improvement 2: Label the axis better.
 
-- Improvement 3: 
+- Improvement 3: Focus the graph closer to where the data lies.
 
-- Improvement 4: 
+- Improvement 4: Represent every country.
 
 **Possible issues to consider:**
 
@@ -446,16 +446,45 @@ labs(title = "...", x = "...", y = "...", fill = "...")
 ```
 
 **Your improved visualization:**
-```{r improved-fisheries-plot, fig.width = 8, fig.height = 10, eval = FALSE}
-# Remember to change eval=FALSE to eval=TRUE!
-# Your code here
+```{r improved-fisheries-plot, fig.width = 8, fig.height = 10, eval = TRUE}
+fisheries_top20 <- fisheries %>%
+  mutate(country = fct_reorder(country, total)) %>%
+  slice_max(total, n = 20) %>%
+  pivot_longer(
+    cols = c(capture, aquaculture),
+    names_to = "type",
+    values_to = "amount"
+  )
+
+ggplot(fisheries_top20, aes(x = country, y = amount / 1e6, fill = type)) +
+  geom_col() +
+  coord_flip() +
+  scale_fill_viridis_d(
+    name = "Fishing Type",
+    labels = c("Aquaculture", "Capture")
+  ) +
+  labs(
+    title = "Top 20 Countries by Total Fisheries Production",
+    subtitle = "Capture vs. Aquaculture (in millions of tonnes)",
+    x = "Country",
+    y = "Production (millions of tonnes)",
+    fill = "Type"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(face = "bold", size = 14),
+    plot.subtitle = element_text(size = 11),
+    legend.position = "bottom",
+    axis.text.y = element_text(size = 9)
+  )
 ```
 
 **Explain your design decisions:** Write a paragraph (4-6 sentences) describing the changes you made and how they improve the visualization.
+Stacking the countries with two fills helps the viewer seek what they're finding, and compare the aquaculture and capture stats specifically. The axis are also changed to millions for easier comprehension. The countries are also ranked from most to least production. The horizontal bars also keep the countries readability from overlapping. The colors are also a good contrast for easy viewing.
 
 
 
-**Did your improved visualization accomplish your goals?** Are there any improvements you proposed that you weren't able to implement? If so, what are they?
+**Did your improved visualization accomplish your goals?** Are there any improvements you proposed that you weren't able to implement? If so, what are they? I would say the improvements did accomplish the goals. The way exercise 5 is organized is specifically quite easy for myself to interpret and explain if I'd need to.
 
 
 
