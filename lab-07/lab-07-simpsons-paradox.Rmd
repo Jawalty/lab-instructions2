@@ -210,15 +210,15 @@ I would expect that smokers would have declining health, as well as a surge in y
 Create a visualization depicting the relationship between smoking status and health outcome. Briefly describe the relationship, and evaluate whether this meets your expectations. Additionally, calculate the relevant conditional probabilities to help your narrative.
 
 **Part A: Create a visualization**
-```{r smoker-outcome-viz, eval = FALSE}
+```{r smoker-outcome-viz, eval = TRUE}
 # Remember to change eval=FALSE to eval=TRUE!
-ggplot(data = Whickham, aes(x = ___, fill = ___)) +
-  geom_bar(position = "___") +
+ggplot(data = Whickham, aes(x = smoker, fill = outcome)) +
+  geom_bar(position = "fill") +
   labs(
-    title = "___",
-    x = "___",
-    y = "___",
-    fill = "___"
+    title = "Smoking Status vs Health Outcome",
+    x = "Smoker",
+    y = "Proportion",
+    fill = "Outcome"
   )
 ```
 
@@ -240,20 +240,20 @@ Whickham %>%
 **Part C: Calculate conditional probabilities**
 
 Calculate the probability of being alive given smoking status.
-```{r conditional-probs, eval = FALSE}
+```{r conditional-probs, eval = TRUE}
 # Remember to change eval=FALSE to eval=TRUE!
 Whickham %>%
   count(smoker, outcome) %>%
-  group_by(___) %>%
-  mutate(proportion = n / sum(___))
+  group_by(smoker) %>%
+  mutate(prob = n / sum(n))
 ```
 
 **Interpret the results:**
 
-- Proportion of smokers who are alive after 20 years: _____
-- Proportion of non-smokers who are alive after 20 years: _____
+- Proportion of smokers who are alive after 20 years: 76.1%
+- Proportion of non-smokers who are alive after 20 years: 68.5%
 
-**Does this meet your expectations? What do you notice?**
+**Does this meet your expectations? What do you notice?** Right away im noticing that the smokers have a higher percentage of alive rates compared to the non-smokers. You would expect the smokers to have higher death rates.
 
 
 
