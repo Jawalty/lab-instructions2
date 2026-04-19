@@ -1,6 +1,6 @@
 ---
 title: "Lab 08 - University of Edinburgh Art Collection"
-author: "Jackson Walterman"
+author: "Jackson Walterman pls work"
 output: 
   tufte::tufte_html:
     css: ../lab.css
